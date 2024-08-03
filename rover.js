@@ -25,31 +25,16 @@ class Rover {
         this.mode = message.commands[i].value;
         response.results.push({
           completed: true,
-          roverStatus: {
-            mode: this.mode,
-            generatorWatts: this.generatorWatts,
-            position: this.position,
-          },
         });
       } else if (message.commands[i].commandType === "MOVE") {
         if (this.mode === "LOW_POWER") {
           response.results.push({
             completed: false,
-            roverStatus: {
-              mode: this.mode,
-              generatorWatts: this.generatorWatts,
-              position: this.position,
-            },
           });
         } else {
           this.position = message.commands[i].value;
           response.results.push({
             completed: true,
-            roverStatus: {
-              mode: this.mode,
-              generatorWatts: this.generatorWatts,
-              position: this.position,
-            },
           });
         }
       }
